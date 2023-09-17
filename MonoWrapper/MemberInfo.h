@@ -10,6 +10,8 @@ namespace Mono {
 
     class MemberInfo {
     public:
+        MemberInfo() = default;
+
         explicit MemberInfo(const Type &declaringType, const std::string &name);
 
         /**

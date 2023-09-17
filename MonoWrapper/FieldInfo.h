@@ -12,6 +12,8 @@ namespace Mono {
 
     class FieldInfo : public MemberInfo {
     public:
+        FieldInfo() = default;
+
         explicit FieldInfo(const Type &type, non_owning_ptr<MonoClassField> field);
 
         /**

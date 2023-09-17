@@ -8,6 +8,8 @@ namespace Mono {
 
     class Thread {
     public:
+        Thread() = default;
+
         explicit Thread(non_owning_ptr<MonoThread> thread);
 
         static const AppDomain &getDomain();

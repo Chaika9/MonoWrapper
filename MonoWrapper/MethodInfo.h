@@ -9,6 +9,8 @@ namespace Mono {
 
     class MethodInfo : public MemberInfo {
     public:
+        MethodInfo() = default;
+
         explicit MethodInfo(const Type &type, non_owning_ptr<MonoMethod> method);
 
         /**

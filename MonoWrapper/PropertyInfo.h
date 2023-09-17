@@ -7,6 +7,8 @@
 namespace Mono {
     class PropertyInfo : public MemberInfo {
     public:
+        PropertyInfo() = default;
+
         explicit PropertyInfo(const Type &type, non_owning_ptr<MonoProperty> property);
 
         /**

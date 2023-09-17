@@ -13,6 +13,8 @@ namespace Mono {
 namespace Mono::Experimental {
     class Array {
     public:
+        Array() = default;
+
         explicit Array(non_owning_ptr<MonoArray> array);
 
         /**

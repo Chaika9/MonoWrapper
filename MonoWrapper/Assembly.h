@@ -9,6 +9,8 @@
 namespace Mono {
     class Assembly {
     public:
+        Assembly() = default;
+
         explicit Assembly(non_owning_ptr<MonoAssembly> assembly);
 
         /**
