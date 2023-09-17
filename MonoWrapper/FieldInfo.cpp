@@ -3,6 +3,7 @@
 #include "Object.h"
 #include "Exceptions/MissingAttributeException.h"
 #include <mono/metadata/reflection.h>
+#include <mono/metadata/attrdefs.h>
 #include <stdexcept>
 
 using namespace Mono;
@@ -18,6 +19,11 @@ FieldInfo::FieldInfo(const Type &type, non_owning_ptr<MonoClassField> field) : M
 
 non_owning_ptr<MonoClassField> FieldInfo::get() const {
     return _field;
+}
+
+bool FieldInfo::isStatic() const {
+    uint32_t flags = mono_field_get_flags(_field);
+    return (flags & MONO_FIELD_ATTR_STATIC) != 0;
 }
 
 Object FieldInfo::getCustomAttribute(const Type &attributeType) {

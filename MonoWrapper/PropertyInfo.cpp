@@ -22,6 +22,10 @@ non_owning_ptr<MonoProperty> PropertyInfo::get() const {
     return _property;
 }
 
+bool PropertyInfo::isStatic() const {
+    return getGetMethod().isStatic();
+}
+
 Object PropertyInfo::getCustomAttribute(const Type &attributeType) {
     auto attributeInfo = mono_custom_attrs_from_property(_declaringType.get(), _property);
     if (attributeInfo == nullptr) {

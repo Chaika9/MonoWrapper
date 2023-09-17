@@ -23,6 +23,12 @@ namespace Mono {
         non_owning_ptr<MonoClassField> get() const;
 
         /**
+         * @brief Check if this field is static.
+         * @return True if this field is static, false otherwise.
+         */
+        bool isStatic() const override;
+
+        /**
          * @brief Get a specific custom attribute with specified type.
          * @param attributeType Type of attribute to get.
          * @return Custom attribute object.

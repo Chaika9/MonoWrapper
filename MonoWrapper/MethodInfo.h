@@ -20,6 +20,12 @@ namespace Mono {
         non_owning_ptr<MonoMethod> get() const;
 
         /**
+         * @brief Check if this method is static.
+         * @return True if this method is static, false otherwise.
+         */
+        bool isStatic() const override;
+
+        /**
          * @brief Get a specific custom attribute with specified type.
          * @param attributeType Type of attribute to get.
          * @return Custom attribute object.

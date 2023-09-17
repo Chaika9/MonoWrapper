@@ -2,6 +2,7 @@
 #include "Type.h"
 #include "Exceptions/MissingAttributeException.h"
 #include <mono/metadata/reflection.h>
+#include <mono/metadata/attrdefs.h>
 #include <stdexcept>
 
 using namespace Mono;
@@ -16,6 +17,11 @@ MethodInfo::MethodInfo(const Type &type, non_owning_ptr<MonoMethod> method) : Me
 
 non_owning_ptr<MonoMethod> MethodInfo::get() const {
     return _method;
+}
+
+bool MethodInfo::isStatic() const {
+    uint32_t flags = mono_method_get_flags(_method, nullptr);
+    return (flags & MONO_METHOD_ATTR_STATIC) != 0;
 }
 
 Object MethodInfo::getCustomAttribute(const Type &attributeType) {

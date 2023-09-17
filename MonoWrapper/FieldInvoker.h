@@ -27,9 +27,7 @@ namespace Mono {
         void setValueImpl(const Object *object, T value) const {
             auto monoValue = ConvertType<std::decay_t<T>>::toMono(std::forward<T>(value));
             auto arg = toMonoArg(monoValue);
-
-            MonoObject *obj = object->get();
-            mono_field_set_value(obj, _field.get(), arg);
+            mono_field_set_value(object->get(), _field.get(), arg);
         }
 
         T getValueImpl(const Object *object) const {
@@ -41,9 +39,7 @@ namespace Mono {
                 arg = &objValue;
             }
 
-            MonoObject *obj = object->get();
-            mono_field_get_value(obj, _field.get(), arg);
-
+            mono_field_get_value(object->get(), _field.get(), arg);
             if (!_field.getType().isValueType() && objValue != nullptr) {
                 val = ConvertType<T>::fromMonoBoxed(objValue);
             }

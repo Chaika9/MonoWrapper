@@ -27,6 +27,12 @@ namespace Mono {
         virtual const Type &getDeclaringType() const;
 
         /**
+         * @brief Check if this member is static.
+         * @return True if this member is static, false otherwise.
+         */
+        virtual bool isStatic() const = 0;
+
+        /**
          * @brief Get a specific custom attribute with specified type.
          * @param attributeType Type of attribute to get.
          * @return Custom attribute object.
