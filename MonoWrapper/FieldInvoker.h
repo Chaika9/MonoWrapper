@@ -37,14 +37,14 @@ namespace Mono {
 
             auto arg = reinterpret_cast<void *>(&val);
             MonoObject *objValue = nullptr;
-            if (!_field.getDeclaringType().isValueType()) {
+            if (!_field.getType().isValueType()) {
                 arg = &objValue;
             }
 
             MonoObject *obj = object->get();
             mono_field_get_value(obj, _field.get(), arg);
 
-            if (!_field.getDeclaringType().isValueType() && objValue != nullptr) {
+            if (!_field.getType().isValueType() && objValue != nullptr) {
                 val = ConvertType<T>::fromMonoBoxed(objValue);
             }
             return val;

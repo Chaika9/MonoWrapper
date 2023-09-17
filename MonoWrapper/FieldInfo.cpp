@@ -13,6 +13,7 @@ FieldInfo::FieldInfo(const Type &type, non_owning_ptr<MonoClassField> field) : M
     if (field == nullptr) {
         throw std::invalid_argument("field cannot be null");
     }
+    _type = Type(mono_field_get_type(field));
 }
 
 non_owning_ptr<MonoClassField> FieldInfo::get() const {
@@ -39,4 +40,8 @@ bool FieldInfo::hasCustomAttribute(const Type &attributeType) {
 
     auto attributePtr = mono_custom_attrs_get_attr(attributeInfo, attributeType.get());
     return attributePtr != nullptr;
+}
+
+Type FieldInfo::getType() const {
+    return _type;
 }

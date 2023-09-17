@@ -20,6 +20,8 @@ namespace Mono {
 
         explicit Type(non_owning_ptr<MonoClass> type);
 
+        explicit Type(non_owning_ptr<MonoType> type);
+
         /**
          * @brief Get raw MonoClass pointer.
          * @return Raw MonoClass pointer.

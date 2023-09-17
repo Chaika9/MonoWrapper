@@ -36,6 +36,12 @@ namespace Mono {
         bool hasCustomAttribute(const Type &attributeType) override;
 
         /**
+         * @brief Get type of this field.
+         * @return Type of this field.
+         */
+        Type getType() const;
+
+        /**
          * @brief Get value of this field.
          * @tparam RetType Return type of field.
          * @param object Object to get value from.
@@ -61,5 +67,6 @@ namespace Mono {
 
     protected:
         non_owning_ptr<MonoClassField> _field;
+        Type _type;
     };
 }

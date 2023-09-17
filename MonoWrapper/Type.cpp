@@ -22,6 +22,22 @@ Type::Type(non_owning_ptr<MonoClass> type) : _type(type) {
     _isValueType = mono_class_is_valuetype(_type);
 }
 
+Type::Type(non_owning_ptr<MonoType> type) {
+    if (type == nullptr) {
+        throw std::invalid_argument("type cannot be null");
+    }
+
+    _type = mono_class_from_mono_type(type);
+    if (_type == nullptr) {
+        throw std::runtime_error("Failed to get MonoClass from MonoType");
+    }
+
+    _name = mono_class_get_name(_type);
+    _namespace = mono_class_get_namespace(_type);
+    _fullName = _namespace + "." + _name;
+    _isValueType = mono_class_is_valuetype(_type);
+}
+
 non_owning_ptr<MonoClass> Type::get() const {
     return _type;
 }
