@@ -39,6 +39,12 @@ namespace Mono {
         bool hasCustomAttribute(const Type &attributeType) override;
 
         /**
+         * @brief Get type of this property.
+         * @return Type of this property.
+         */
+        Type getType() const;
+
+        /**
          * @brief Get get method of this property. (e.g. "get_MyProperty")
          * @return Get method info.
          */

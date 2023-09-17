@@ -48,6 +48,10 @@ bool PropertyInfo::hasCustomAttribute(const Type &attributeType) {
     return attributePtr != nullptr;
 }
 
+Type PropertyInfo::getType() const {
+    return getGetMethod().getReturnType();
+}
+
 MethodInfo PropertyInfo::getGetMethod() const {
     auto methodPtr = mono_property_get_get_method(_property);
     return MethodInfo(_declaringType, methodPtr);
