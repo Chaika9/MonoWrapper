@@ -46,11 +46,18 @@ namespace Mono {
          */
         bool isVirtual() const;
 
+        /**
+         * @brief Get return type of this method.
+         * @return Return type of this method.
+         */
+        Type getReturnType() const;
+
         bool operator==(const MethodInfo &other) const;
 
         bool operator!=(const MethodInfo &other) const;
 
     protected:
         non_owning_ptr<MonoMethod> _method = nullptr;
+        non_owning_ptr<MonoMethodSignature> _signature = nullptr;
     };
 }

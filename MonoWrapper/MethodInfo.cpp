@@ -13,6 +13,7 @@ MethodInfo::MethodInfo(const Type &type, non_owning_ptr<MonoMethod> method) : Me
     if (_method == nullptr) {
         throw std::invalid_argument("method cannot be null");
     }
+    _signature = mono_method_signature(_method);
 }
 
 non_owning_ptr<MonoMethod> MethodInfo::get() const {
@@ -49,6 +50,11 @@ bool MethodInfo::hasCustomAttribute(const Type &attributeType) {
 bool MethodInfo::isVirtual() const {
     uint32_t flags = mono_method_get_flags(_method, nullptr);
     return (flags & MONO_METHOD_ATTR_VIRTUAL) != 0;
+}
+
+Type MethodInfo::getReturnType() const {
+    auto type = mono_signature_get_return_type(_signature);
+    return Type(type);
 }
 
 bool MethodInfo::operator==(const MethodInfo &other) const {
