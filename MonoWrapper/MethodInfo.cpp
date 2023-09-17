@@ -46,6 +46,11 @@ bool MethodInfo::hasCustomAttribute(const Type &attributeType) {
     return attributePtr != nullptr;
 }
 
+bool MethodInfo::isVirtual() const {
+    uint32_t flags = mono_method_get_flags(_method, nullptr);
+    return (flags & MONO_METHOD_ATTR_VIRTUAL) != 0;
+}
+
 bool MethodInfo::operator==(const MethodInfo &other) const {
     return _method == other._method;
 }

@@ -40,6 +40,12 @@ namespace Mono {
          */
         bool hasCustomAttribute(const Type &attributeType) override;
 
+        /**
+         * @brief Check if this method is virtual.
+         * @return True if this method is virtual, false otherwise.
+         */
+        bool isVirtual() const;
+
         bool operator==(const MethodInfo &other) const;
 
         bool operator!=(const MethodInfo &other) const;
